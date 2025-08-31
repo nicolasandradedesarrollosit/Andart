@@ -1,12 +1,3 @@
-
-/* ==============================
-   Andart - UI Refresh (CSS only)
-   - No HTML class changes required
-   - Includes responsive media queries
-   - Adds a cohesive color system, nicer spacing, and motion polish
-   ============================== */
-
-/* ---------- Color System ---------- */
 :root{
   --bg: #0B1220;
   --bg-2: #0F1A2B;
