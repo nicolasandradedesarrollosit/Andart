@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./public/Andart.png">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="contact.css">
+    <title>Andart</title>
+</head>
+<body>
+    <header class="header-contact">
+        <h1 class="title-header">
+            Hablemos de tu próximo proyecto
+        </h1>
+        <p class="subtitle-hero">
+            Completa el formulario o escríbenos directamente. Estamos listos para ayudarte a crear algo extraordinario.
+        </p>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <h2 class="form-title">Cuéntanos tu proyecto</h2>
+            <form id="contactForm" class="contact-form" action="#">
+                <div class="field-form">
+                    <input id="name" name="name" type="text" placeholder=" " required>
+                    <label for="name">Nombre completo</label>
+                </div>
+
+                <div class="field-form">
+                    <input type="email" id="email" name="email" placeholder=" " required>
+                    <label for="email">Correo electrónico</label>
+                </div>
+
+                <div class="field-form">
+                    <input type="tel" id="phone" name="phone" placeholder=" ">
+                    <label for="phone">Teléfono (opcional)</label>
+                </div>
+
+                <div class="field-form">
+                    <textarea id="message" name="message" placeholder=" " required></textarea>
+                    <label for="message">Cuéntanos sobre tu proyecto</label>
+                </div>
+
+                <div class="submit-container">
+                    <button type="submit" class="submit-btn">
+                        Enviar mensaje
+                    </button>
+                </div>
+                
+                <div id="formMessage" class="form-message" style="display: none;"></div>
+            </form>
+        </div>
+
+        <div class="contact-methods">
+            <h2 class="contact-title">Contacto directo</h2>
+            
+            <div class="contact-item" onclick="window.open('mailto:nicolasandradedesarrollos@gmail.com')">
+                <div class="contact-icon">✉️</div>
+                <div class="contact-text">
+                    <div class="contact-label">Email</div>
+                    <div class="contact-value">nicolasandradedesarrollos@gmail.com</div>
+                </div>
+            </div>
+
+            <div class="contact-item" onclick="window.open('tel:+5493416923901')">
+                <div class="contact-icon">📞</div>
+                <div class="contact-text">
+                    <div class="contact-label">Teléfono</div>
+                    <div class="contact-value">+54 9 341 692-3901</div>
+                </div>
+            </div>
+
+            <div class="contact-item" onclick="window.open('https://maps.google.com/?q=Rosario,Santa+Fe,Argentina')">
+                <div class="contact-icon">📍</div>
+                <div class="contact-text">
+                    <div class="contact-label">Ubicación</div>
+                    <div class="contact-value">Rosario, Santa Fe, Argentina</div>
+                </div>
+            </div>
+
+            <div class="contact-item" onclick="window.open('https://wa.me/5493416923901')">
+                <div class="contact-icon">💬</div>
+                <div class="contact-text">
+                    <div class="contact-label">WhatsApp</div>
+                    <div class="contact-value">Chatea con nosotros</div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="contact.js"></script>
+</body>
+</html>
