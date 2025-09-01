@@ -333,11 +333,13 @@ main {
         flex-direction: column;
         gap: 3rem;
         padding: 3rem 2rem;
+        align-items: center;
     }
+    
 
     .form-container,
     .contact-methods {
-        max-width: 100%;
+        min-width: 100%;
     }
 }
 
