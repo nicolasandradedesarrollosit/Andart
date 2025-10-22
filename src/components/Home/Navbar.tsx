@@ -12,7 +12,7 @@ import {
     Link
 } from '@heroui/link';
 
-import ButtonLoading from './ButtonLoading';
+import ButtonLoading from '../home/ButtonLoading';
 
 import { 
     NavbarProps
