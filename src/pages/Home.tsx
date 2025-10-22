@@ -1,7 +1,7 @@
-import HeroHome from '../components/home/Hero'
-import FirstSection from '../components/home/FirstSection'
+import HeroHome from '../components/Home/Hero'
+import FirstSection from '../components/Home/FirstSection'
 import Footer from '../components/common/Footer'
-import SecondSection from '../components/home/SecondSection'
+import SecondSection from '../components/Home/SecondSection'
 
 function Home() {
     return (
