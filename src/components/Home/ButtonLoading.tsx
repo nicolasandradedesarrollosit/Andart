@@ -1,10 +1,10 @@
+import { ButtonDomainProps } from '../../types/Home/navbar';
+
+import {useState} from "react"
+
 import {
     Button
 } from '@heroui/button';
-
-import { ButtonDomainProps } from '../../types/home/navbar';
-
-import {useState} from "react";
 
 import {useNavigate} from "react-router-dom";
 

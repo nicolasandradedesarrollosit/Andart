@@ -1,6 +1,6 @@
-import ButtonLoading from './ButtonLoading';
+import ButtonLoading from '../Home/ButtonLoading';
 
-import NavbarHero from '../home/Navbar';
+import NavbarHero from '../Home/Navbar';
 
 function HeroHome() {
 

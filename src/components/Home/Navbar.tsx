@@ -12,11 +12,11 @@ import {
     Link
 } from '@heroui/link';
 
-import ButtonLoading from '../home/ButtonLoading';
-
 import { 
     NavbarProps
-} from '../../types/home/navbar';
+} from '../../types/Home/navbar';
+
+import ButtonLoading from '../Home/ButtonLoading';
 
 function NavbarHero({ page }: NavbarProps) {
     return (
