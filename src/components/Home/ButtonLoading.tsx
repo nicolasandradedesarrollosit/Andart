@@ -1,4 +1,4 @@
-import { ButtonDomainProps } from '../../types/Home/navbar';
+import { ButtonDomainProps } from '../../types/home/navbar';
 
 import {useState} from "react"
 

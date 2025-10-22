@@ -14,7 +14,7 @@ import {
 
 import { 
     NavbarProps
-} from '../../types/Home/navbar';
+} from '../../types/home/navbar';
 
 import ButtonLoading from '../Home/ButtonLoading';
 
