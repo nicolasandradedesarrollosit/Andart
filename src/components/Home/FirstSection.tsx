@@ -22,7 +22,7 @@ function FirstSection() {
                 <Card isFooterBlurred className='border-none w-full sm:w-80 md:w-72 lg:w-80'>
                     <Image src="/card-2.png" className='object-cover w-full h-48 sm:h-56 md:h-64'/>
                     <CardFooter className="flex flex-row justify-center before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-full shadow-small z-10">
-                        <p className="text-xs sm:text-sm text-white/80">Diseñamos pensando en la experiencia.</p>
+                        <p className="text-xs sm:text-sm text-black/80">Diseñamos pensando en la experiencia.</p>
                     </CardFooter>
                 </Card>
                 <Card isFooterBlurred className='border-none w-full sm:w-80 md:w-72 lg:w-80'>
@@ -40,7 +40,7 @@ function FirstSection() {
                 <Card isFooterBlurred className='border-none w-full sm:w-80 md:w-72 lg:w-80'>
                     <Image src="/card-5.png" className='object-cover w-full h-48 sm:h-56 md:h-64'/>
                     <CardFooter className="flex flex-row justify-center before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-full shadow-small z-10">
-                        <p className="text-xs sm:text-sm text-white/80">Lo lanzamos al mundo.</p>
+                        <p className="text-xs sm:text-sm text-black/80">Lo lanzamos al mundo.</p>
                     </CardFooter>
                 </Card>
             </div>

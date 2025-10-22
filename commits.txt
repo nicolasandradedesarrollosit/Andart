@@ -1,0 +1,8 @@
+✨ feat: Add responsive design to Hero, FirstSection, Navbar, and ButtonLoading components
+🎨 feat: Add custom blue color palette to Tailwind config
+🔧 fix: Add meta viewport tag for mobile responsiveness
+📝 docs: Update .gitignore to exclude unnecessary files (node_modules, logs, etc.)
+🚀 feat: Set up Git remote origin to new repository
+🐛 fix: Correct HeroUI imports and component props in FirstSection
+📱 feat: Improve mobile layout for cards and text in FirstSection
+🔄 refactor: Make Navbar and Hero components fully responsive across devices
