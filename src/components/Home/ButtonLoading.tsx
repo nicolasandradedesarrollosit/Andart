@@ -16,8 +16,15 @@ function ButtonLoading({ domain, contentButton, variant, color }: ButtonDomainPr
         setLoading(true);
         setTimeout(() => {
             setLoading(false);
-            navigate(path);
-        }, 2500);
+            if (path.startsWith('#')) {
+                const element = document.querySelector(path);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            } else {
+                navigate(path);
+            }
+        }, 1500);
     };
 
     return (

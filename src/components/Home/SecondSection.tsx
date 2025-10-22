@@ -35,7 +35,7 @@ function SecondSection() {
         }
     ]
     return (
-        <div className='flex flex-col items-center bg-white w-full min-h-[60vh] h-auto justify-center gap-12 text-black py-8 sm:py-12 md:py-16'>
+        <div id="FAQ-SECTION" className='flex flex-col items-center bg-white w-full min-h-[60vh] h-auto justify-center gap-12 text-black py-8 sm:py-12 md:py-16'>
             <div className='flex flex-col justify-center text-center gap-2 px-4'>
                 <p className='text-3xl sm:text-4xl md:text-5xl font-semibold text-primary'>Preguntas frecuentes,</p>
                 <p className='text-3xl sm:text-4xl md:text-5xl font-semibold text-black'>todo lo que necesitas saber</p>
