@@ -30,19 +30,44 @@ import {
     Avatar
 } from '@heroui/avatar';
 
+import {
+    sendMessage
+} from '../../supabase-functions/insert-message';
+
+import {
+    SendMessageParams
+} from '../../types/supabase/sendMessage';
+
+import {
+    FormDataParams
+} from '../../types/home/formData';
+
+import {
+    Alert
+} from '@heroui/alert';
+
 function DrawerComponent() {
+    const [loading, setLoading] = useState(false);
+    const [alertVisible, setAlertVisible] = useState(false);
+
+    const [formData, setFormData] = useState<FormDataParams>({
+        name: '',
+        email: '',
+        message: ''
+    });
+
     const { isOpen, onClose } = useDrawer();
 
     const [mobile, setMobile] = useState(false);
 
     const [fieldsValid, setFieldValid] = useState<{
-        nombre: boolean | null,
+        name: boolean | null,
         email: boolean | null,
-        mensaje: boolean | null
+        message: boolean | null
     }>({
-        nombre: null,
+        name: null,
         email: null,
-        mensaje: null
+        message: null
     })
 
     const regex = [
@@ -60,7 +85,7 @@ function DrawerComponent() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    const validateAllFields = (e?: any) => {
+    const validateAllFields = async (e?: any) => {
         if (e && typeof e.preventDefault === 'function') e.preventDefault();
 
         const allValid = Object.values(fieldsValid).every(Boolean);
@@ -69,11 +94,40 @@ function DrawerComponent() {
             console.log('Validation failed', fieldsValid);
             return;
         }
-        onClose();
+
+        try {
+            setLoading(true);
+            const params: SendMessageParams = {
+                name: formData.name.trim(),
+                email: formData.email.trim(),
+                message: formData.message.trim()
+            };
+
+            await sendMessage(params);
+
+            setFormData({
+                name: '',
+                email: '',
+                message: ''
+            });
+
+            setFieldValid({
+                name: null,
+                email: null,
+                message: null
+            });
+
+            setLoading(false);
+            onClose();
+        }
+        catch (err){
+            console.error('Error sending message:', err);
+            setLoading(false);
+        }
     }
 
     return (
-        <Drawer className='bg-black' size={mobile ? 'full' : '2xl'} isOpen={isOpen} onClose={onClose} placement='right' backdrop='blur'>
+        <Drawer className='bg-black' size={mobile ? 'full' : '2xl'} isOpen={isOpen} onClose={() => {setAlertVisible(false); onClose();}} placement='right' backdrop='blur'>
             <DrawerContent>
                 <DrawerHeader>
                     <div className='flex flex-col w-full items-center mt-8 sm:mt-12 md:mt-16 gap-6 sm:gap-8 md:gap-12 px-4'>
@@ -84,7 +138,7 @@ function DrawerComponent() {
                             className='w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24'
                         />
                         <p className='text-white text-xl sm:text-2xl md:text-3xl text-center'>
-                            Agenda una reunion con Andart
+                            Agendá una reunión con Andart
                         </p>
                     </div>
                 </DrawerHeader>
@@ -97,12 +151,13 @@ function DrawerComponent() {
                             }} 
                             variant='faded' 
                             isRequired 
-                            label='Nombre'
-                            isInvalid={fieldsValid.nombre === false}
+                            label='Nombre completo'
+                            isInvalid={fieldsValid.name === false}
                             onValueChange={(value) => {
-                                setFieldValid((prev) => ({ ...prev, nombre: regex[0].test(value) }));
+                                setFormData((prev) => ({ ...prev, name: value }));
+                                setFieldValid((prev) => ({ ...prev, name: regex[0].test(value) }));
                             }}
-                            errorMessage='El nombre no puede estar vacio' 
+                            errorMessage='El nombre debe contener al menos 3 letras y un apellido.' 
                         />
                         <Input 
                             classNames={{
@@ -114,9 +169,10 @@ function DrawerComponent() {
                             label='Email'
                             isInvalid={fieldsValid.email === false}
                             onValueChange={(value) => {
+                                setFormData((prev) => ({ ...prev, email: value }));
                                 setFieldValid((prev) => ({ ...prev, email: regex[1].test(value) }));
                             }}
-                            errorMessage='Ingrese un email valido' 
+                            errorMessage='Ingrese un email válido (ejemplo@dominio.com).' 
                         />
                         <Textarea 
                             classNames={{
@@ -127,24 +183,33 @@ function DrawerComponent() {
                             isClearable 
                             isRequired 
                             label='Mensaje' 
-                            isInvalid={fieldsValid.mensaje === false}
+                            isInvalid={fieldsValid.message === false}
                             onValueChange={(value) => {
-                                setFieldValid((prev) => ({ ...prev, mensaje: regex[2].test(value) }));
+                                setFormData((prev) => ({ ...prev, message: value }));
+                                setFieldValid((prev) => ({ ...prev, message: regex[2].test(value) }));
                             }}
-                            errorMessage='El mensaje no puede estar vacio'
+                            errorMessage='El mensaje no puede estar vacío.'
                         />
                         <div className='flex flex-col sm:flex-row justify-center w-full gap-4 sm:gap-6 md:gap-8 mt-4'>
-                            <Button type='submit' className='w-full sm:w-1/2 md:w-1/3' variant='ghost' color='primary'>
+                            <Button isLoading={loading} type='submit' className='w-full sm:w-1/2 md:w-1/3' variant='ghost' color='primary'>
                                 Enviar
                             </Button>
                             <Button type='reset' className='w-full sm:w-1/2 md:w-1/3' color='default'>
-                                Reset
+                                Restablecer
                             </Button>
+                            <Alert 
+                                variant='faded'
+                                color='success'
+                                description='Tu mensaje ha sido enviado con éxito.'
+                                className='w-4/5'
+                                isVisible={alertVisible}
+                                onClose={() => setAlertVisible(false)}
+                            />
                         </div>
                     </Form>
                 </DrawerBody>
                 <DrawerFooter className='px-4 sm:px-6'>
-                    <Button color='danger' variant='light' onPress={onClose}>
+                    <Button color='danger' variant='light' onPress={() => {setAlertVisible(false); onClose();}}>
                         Cerrar
                     </Button>
                 </DrawerFooter>
