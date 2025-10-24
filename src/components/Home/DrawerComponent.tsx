@@ -88,6 +88,8 @@ function DrawerComponent() {
     const validateAllFields = async (e?: any) => {
         if (e && typeof e.preventDefault === 'function') e.preventDefault();
 
+        const form = e.target as HTMLFormElement;
+
         const allValid = Object.values(fieldsValid).every(Boolean);
 
         if (!allValid) {
@@ -119,6 +121,7 @@ function DrawerComponent() {
 
             setLoading(false);
             setAlertVisible(true);
+            form.reset();
         }
         catch (err){
             console.error('Error sending message:', err);
