@@ -113,15 +113,14 @@ function DrawerComponent() {
                 message: ''
             });
 
+            setLoading(false);
+            setAlertVisible(true);
+            form.reset();
             setFieldValid({
                 name: null,
                 email: null,
                 message: null
             });
-
-            setLoading(false);
-            setAlertVisible(true);
-            form.reset();
         }
         catch (err){
             console.error('Error sending message:', err);
