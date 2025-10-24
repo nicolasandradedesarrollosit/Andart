@@ -194,18 +194,18 @@ function DrawerComponent() {
                             <Button isLoading={loading} type='submit' className='w-full sm:w-1/2 md:w-1/3' variant='ghost' color='primary'>
                                 Enviar
                             </Button>
-                            <Button type='reset' className='w-full sm:w-1/2 md:w-1/3' color='default'>
+                            <Button type='reset' className='w-full sm:w-1/2 md:w-1/3' color='default' onPress={() => {setAlertVisible(false)}}>
                                 Restablecer
                             </Button>
-                            <Alert 
-                                variant='faded'
-                                color='success'
-                                description='Tu mensaje ha sido enviado con éxito.'
-                                className='w-4/5'
-                                isVisible={alertVisible}
-                                onClose={() => setAlertVisible(false)}
-                            />
                         </div>
+                        <Alert 
+                            variant='solid'
+                            color='success'
+                            description='Tu mensaje ha sido enviado con éxito.'
+                            className='w-full text-black transition-all duration-300 ease-in-out'
+                            isVisible={alertVisible}
+                            onClose={() => setAlertVisible(false)}
+                        />
                     </Form>
                 </DrawerBody>
                 <DrawerFooter className='px-4 sm:px-6'>
