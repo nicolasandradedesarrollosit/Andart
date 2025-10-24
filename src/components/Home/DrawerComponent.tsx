@@ -118,6 +118,7 @@ function DrawerComponent() {
             });
 
             setLoading(false);
+            setAlertVisible(true);
         }
         catch (err){
             console.error('Error sending message:', err);
