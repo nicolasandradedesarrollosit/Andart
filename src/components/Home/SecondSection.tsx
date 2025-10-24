@@ -37,8 +37,8 @@ function SecondSection() {
     return (
         <div id="FAQ-SECTION" className='flex flex-col items-center bg-white w-full min-h-[60vh] h-auto justify-center gap-12 text-black py-8 sm:py-12 md:py-16'>
             <div className='flex flex-col justify-center text-center gap-2 px-4'>
-                <p className='text-3xl sm:text-4xl md:text-5xl font-semibold text-primary'>Preguntas frecuentes,</p>
-                <p className='text-3xl sm:text-4xl md:text-5xl font-semibold text-black'>todo lo que necesitas saber</p>
+                <p className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-primary'>Preguntas frecuentes,</p>
+                <p className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-black'>todo lo que necesitas saber</p>
             </div>
             <div className='flex flex-col gap-4 w-95/100 sm:w-5/6 md:w-4/5 lg:w-3/4 xl:w-2/3 shadow-lg rounded-xl bg-gray-50'>
                 <Accordion variant='bordered'>

@@ -137,9 +137,12 @@ function DrawerComponent() {
                             src="/Andart.png"
                             className='w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24'
                         />
-                        <p className='text-white text-xl sm:text-2xl md:text-3xl text-center'>
-                            Agendá una reunión con Andart
-                        </p>
+                        <div className='flex flex-col gap-4 text-center'>
+                            <p className='text-white text-xl sm:text-2xl md:text-3xl text-center'>
+                                Agendá una reunión con Andart
+                            </p>
+                            <p className='text-xs sm:text-sm md:text-md opacity-80 px-4'>Responderemos tu mensaje en las próximas 24 horas.</p>
+                        </div>
                     </div>
                 </DrawerHeader>
                 <DrawerBody className='flex flex-col items-center px-4 sm:px-6 md:px-8'>
