@@ -118,7 +118,6 @@ function DrawerComponent() {
             });
 
             setLoading(false);
-            onClose();
         }
         catch (err){
             console.error('Error sending message:', err);

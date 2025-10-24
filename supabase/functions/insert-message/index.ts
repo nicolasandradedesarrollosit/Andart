@@ -4,17 +4,19 @@ import { validateFields } from '../helpers/validate.ts'
 Deno.serve(async (req: Request) => {
 
   const allowedOrigins = [
-    'http://localhost:5173',   
-    'http://localhost:3000',       
-    'https://andart-coral.vercel.app'
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'https://andart-coral.vercel.app',
   ]
 
+  const reqOrigin = req.headers.get('Origin') || ''
+  const DEFAULT_CORS_ORIGIN = Deno.env.get('SUPABASE_FUNCTIONS_ALLOW_ORIGIN') ?? '*'
+  const corsOrigin = allowedOrigins.includes(reqOrigin) ? reqOrigin : DEFAULT_CORS_ORIGIN
+
   const corsHeaders = {
-    'Access-Control-Allow-Origin': allowedOrigins.includes(req.headers.get('Origin') || '')
-      ? (req.headers.get('Origin') || '')
-      : '',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Origin': corsOrigin,
+    'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization, apikey, x-client-info',
   }
 
   if (req.method === 'OPTIONS') {
@@ -25,8 +27,8 @@ Deno.serve(async (req: Request) => {
   }
 
 
-  const supabaseUrl = Deno.env.get('VITE_SUPABASE_URL')!
-  const supabaseServiceRoleKey = Deno.env.get('VITE_SUPABASE_SERVICE_ROLE_KEY')!
+  const supabaseUrl = Deno.env.get('SUPABASE_URL')!
+  const supabaseServiceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
   const supabase = createClient(supabaseUrl, supabaseServiceRoleKey)
 
   try {
