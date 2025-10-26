@@ -1,83 +1,56 @@
-import { useEffect, useRef, useState } from "react";
-
-function CountUp({ end, suffix = "", duration = 1200 }: { end: number; suffix?: string; duration?: number }) {
-    const [value, setValue] = useState(0);
-    const ref = useRef<HTMLSpanElement | null>(null);
-    const started = useRef(false);
-
-    useEffect(() => {
-        const el = ref.current;
-        if (!el) return;
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting && !started.current) {
-                    started.current = true;
-                    const start = performance.now();
-                    const from = 0;
-                    const to = end;
-
-                    const step = (now: number) => {
-                        const progress = Math.min(1, (now - start) / duration);
-                        const current = Math.floor(from + (to - from) * progress);
-                        setValue(current);
-                        if (progress < 1) {
-                            requestAnimationFrame(step);
-                        } else {
-                            setValue(to);
-                        }
-                    };
-
-                    requestAnimationFrame(step);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        observer.observe(el);
-
-        return () => observer.disconnect();
-    }, [end, duration]);
-
-    return (
-        <span ref={ref}>
-            {value}{suffix}
-        </span>
-    );
-}
+import {
+    Accordion,
+    AccordionItem
+} from '@heroui/accordion';
 
 function FourthSection() {
-    const cardsExperience = [
+    const faq = [
         {
-            numero: 10,
-            suffix: "+",
-            descripcion: "Proyectos completados"
+            question: "¿Qué servicios ofrecen en Andart?",
+            answer: "En Andart ofrecemos desarrollo de software a medida, incluyendo aplicaciones web, móviles y de escritorio. También brindamos servicios de consultoría, integración de sistemas, mantenimiento y soporte técnico."
         },
         {
-            numero: 3,
-            suffix: "+",
-            descripcion: "Años de experiencia"
+            question: "¿Cómo funciona su proceso de desarrollo?",
+            answer: "Utilizamos metodologías ágiles como Scrum para asegurar un desarrollo iterativo y colaborativo. Comenzamos con una fase de entendimiento del problema, luego diseño, desarrollo paso a paso, pruebas y finalmente lanzamiento, ajustando junto al cliente en cada etapa."
         },
         {
-            numero: 5,
-            suffix: "+",
-            descripcion: "Proyectos en curso"
+            question: "¿Qué tecnologías utilizan?",
+            answer: "Trabajamos con una amplia gama de tecnologías modernas, incluyendo React, Node.js, Python, bases de datos SQL y NoSQL, y herramientas de cloud como AWS y Vercel. Adaptamos las tecnologías según las necesidades del proyecto."
+        },
+        {
+            question: "¿Cuánto tiempo toma un proyecto?",
+            answer: "El tiempo varía según la complejidad del proyecto. Un MVP básico puede tomar 1-3 meses, mientras que proyectos más grandes pueden extenderse a 6-12 meses o más. Proporcionamos estimaciones detalladas después de la consulta inicial."
+        },
+        {
+            question: "¿Cuál es su modelo de precios?",
+            answer: "Ofrecemos precios competitivos basados en el alcance del proyecto. Podemos trabajar con presupuestos fijos para proyectos definidos o con modelos por hora/día para desarrollos más flexibles. Contáctanos para una cotización personalizada."
+        },
+        {
+            question: "¿Proporcionan mantenimiento y soporte después del lanzamiento?",
+            answer: "Sí, ofrecemos servicios de mantenimiento continuo, actualizaciones de seguridad, soporte técnico y mejoras post-lanzamiento para asegurar que tu software siga funcionando óptimamente."
+        },
+        {
+            question: "¿Cómo garantizan la calidad y seguridad del software?",
+            answer: "Implementamos pruebas automatizadas, revisiones de código y auditorías de seguridad. Nos aseguramos de que el software cumpla con estándares de calidad y proteja los datos de nuestros clientes."
         }
-    ];
-
+    ]
     return (
-        <div className="flex flex-col justify-center items-center w-full min-h-[40vh] h-auto ">
-            <div className="flex flex-row w-3/4 h-auto gap-4 justify-center items-center">
-                {cardsExperience.map((card, index) => (
-                    <div key={index} className="flex flex-col justify-center items-center w-1/3 h-40 sm:h-48 md:h-56 lg:h-64 gap-2 ">
-                        <p className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary">
-                            <CountUp end={card.numero} suffix={card.suffix} />
-                        </p>
-                        <p className="text-xs sm:text-sm md:text-lg text-black mt-2 text-center px-4">{card.descripcion}</p>
-                    </div>
-                ))}
+        <div id="FAQ-SECTION" className='flex flex-col items-center bg-white w-full min-h-[60vh] h-auto justify-center gap-12 text-black py-8 sm:py-12 md:py-16'>
+            <div className='flex flex-col justify-center text-center gap-2 px-4'>
+                <p className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-primary'>Preguntas frecuentes,</p>
+                <p className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-black'>todo lo que necesitas saber</p>
+            </div>
+            <div className='flex flex-col gap-4 w-95/100 sm:w-5/6 md:w-4/5 lg:w-3/4 xl:w-2/3 shadow-lg rounded-xl bg-gray-50'>
+                <Accordion variant='bordered'>
+                    {faq.map((item, index) => (
+                        <AccordionItem key={index} aria-label={item.question} title={item.question}>
+                            {item.answer}
+                        </AccordionItem>
+                    ))}
+                </Accordion>
             </div>
         </div>
-    );
+    )
 }
 
-export default FourthSection;
+export default FourthSection

@@ -1,51 +1,83 @@
-import {
-    Card,
-    CardFooter,
-} from '@heroui/card';
+import { useEffect, useRef, useState } from "react";
 
-import {
-    Image
-} from '@heroui/image';
+function CountUp({ end, suffix = "", duration = 1200 }: { end: number; suffix?: string; duration?: number }) {
+    const [value, setValue] = useState(0);
+    const ref = useRef<HTMLSpanElement | null>(null);
+    const started = useRef(false);
+
+    useEffect(() => {
+        const el = ref.current;
+        if (!el) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting && !started.current) {
+                    started.current = true;
+                    const start = performance.now();
+                    const from = 0;
+                    const to = end;
+
+                    const step = (now: number) => {
+                        const progress = Math.min(1, (now - start) / duration);
+                        const current = Math.floor(from + (to - from) * progress);
+                        setValue(current);
+                        if (progress < 1) {
+                            requestAnimationFrame(step);
+                        } else {
+                            setValue(to);
+                        }
+                    };
+
+                    requestAnimationFrame(step);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer.observe(el);
+
+        return () => observer.disconnect();
+    }, [end, duration]);
+
+    return (
+        <span ref={ref}>
+            {value}{suffix}
+        </span>
+    );
+}
 
 function FirstSection() {
+    const cardsExperience = [
+        {
+            numero: 10,
+            suffix: "+",
+            descripcion: "Proyectos completados"
+        },
+        {
+            numero: 3,
+            suffix: "+",
+            descripcion: "Años de experiencia"
+        },
+        {
+            numero: 5,
+            suffix: "+",
+            descripcion: "Proyectos en curso"
+        }
+    ];
+
     return (
-        <div className="flex flex-col items-center min-h-screen bg-white gap-8 sm:gap-10 md:gap-12 py-8 sm:py-12 md:py-16">
-            <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary px-4 text-center">¿Cómo trabajamos?</p>
-            <p className="text-sm sm:text-base md:text-lg text-black w-full sm:w-4/5 md:w-3/4 lg:w-2/3 text-center opacity-50 px-4">En Andart nos dedicamos a solucionar problemas, brindando soluciones informáticas para todo tipo de empresas.</p>
-            <div className="flex flex-col sm:flex-row sm:flex-wrap w-full sm:w-4/5 md:w-3/4 lg:w-2/3 items-center justify-center gap-6 sm:gap-8 px-4">
-                <Card isFooterBlurred className='border-none w-full sm:w-80 md:w-72 lg:w-80'>
-                    <Image src="/card-1.png" className='object-cover w-full h-48 sm:h-56 md:h-64'/>
-                    <CardFooter className="flex flex-row justify-center before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-full shadow-small z-10">
-                        <p className="text-xs sm:text-sm text-black/80">Entendemos el problema, no solo el pedido.</p>
-                    </CardFooter>
-                </Card>
-                <Card isFooterBlurred className='border-none w-full sm:w-80 md:w-72 lg:w-80'>
-                    <Image src="/card-2.png" className='object-cover w-full h-48 sm:h-56 md:h-64'/>
-                    <CardFooter className="flex flex-row justify-center before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-full shadow-small z-10">
-                        <p className="text-xs sm:text-sm text-black/80">Diseñamos pensando en la experiencia.</p>
-                    </CardFooter>
-                </Card>
-                <Card isFooterBlurred className='border-none w-full sm:w-80 md:w-72 lg:w-80'>
-                    <Image src="/card-3.png" className='object-cover w-full h-48 sm:h-56 md:h-64'/>
-                    <CardFooter className="flex flex-row justify-center before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-full shadow-small z-10">
-                        <p className="text-xs sm:text-sm text-black/80">Desarrollamos paso a paso.</p>
-                    </CardFooter>
-                </Card>
-                <Card isFooterBlurred className='border-none w-full sm:w-80 md:w-72 lg:w-80'>
-                    <Image src="/card-4.png" className='object-cover w-full h-48 sm:h-56 md:h-64'/>
-                    <CardFooter className="flex flex-row justify-center before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-full shadow-small z-10">
-                        <p className="text-xs sm:text-sm text-black/80">Lo ajustamos junto a vos.</p>
-                    </CardFooter>
-                </Card>
-                <Card isFooterBlurred className='border-none w-full sm:w-80 md:w-72 lg:w-80'>
-                    <Image src="/card-5.png" className='object-cover w-full h-48 sm:h-56 md:h-64'/>
-                    <CardFooter className="flex flex-row justify-center before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-full shadow-small z-10">
-                        <p className="text-xs sm:text-sm text-black/80">Lo lanzamos al mundo.</p>
-                    </CardFooter>
-                </Card>
+        <div className="flex flex-col justify-center items-center w-full min-h-[40vh] h-auto ">
+            <div className="flex flex-row w-3/4 h-auto gap-4 justify-center items-center">
+                {cardsExperience.map((card, index) => (
+                    <div key={index} className="flex flex-col justify-center items-center w-1/3 h-40 sm:h-48 md:h-56 lg:h-64 gap-2 ">
+                        <p className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary">
+                            <CountUp end={card.numero} suffix={card.suffix} />
+                        </p>
+                        <p className="text-xs sm:text-sm md:text-lg text-black mt-2 text-center px-4">{card.descripcion}</p>
+                    </div>
+                ))}
             </div>
         </div>
-    )
+    );
 }
 
 export default FirstSection;
