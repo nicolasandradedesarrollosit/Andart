@@ -3,6 +3,7 @@ import FirstSection from '../components/Home/FirstSection'
 import Footer from '../components/common/Footer'
 import SecondSection from '../components/Home/SecondSection'
 import ThirdSection from '../components/Home/ThirdSection'
+import FourthSection from '../components/Home/FourthSection'
 import { DrawerProvider } from '@/components/Home/DrawerProvider'
 
 function Home() {
@@ -17,6 +18,7 @@ function Home() {
                 <FirstSection />
                 <SecondSection />
                 <ThirdSection />
+                <FourthSection />
                 <Footer />
             </DrawerProvider>
         </>
