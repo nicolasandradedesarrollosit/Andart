@@ -27,6 +27,9 @@ export default {
           '950': '#0a1b5c',
         },
       },
+      backgroundImage: {
+        'hero-pattern': "url('/andart_banner.jpg')",
+      },
     },
   },
   darkMode: "class",

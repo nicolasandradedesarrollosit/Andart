@@ -1,6 +1,6 @@
-import ButtonLoading from '../Home/ButtonLoading';
+import ButtonLoading from '../common/ButtonLoading';
 
-import NavbarHero from '../Home/Navbar';
+import NavbarHero from '../common/Navbar';
 
 import { 
     useDrawer
@@ -17,7 +17,7 @@ function HeroHome() {
 
     return (
             <>
-                <div className='bg-black min-h-[60vh] h-auto flex flex-col items-center'>
+                <div className='bg-cover bg-center bg-hero-pattern min-h-[60vh] h-auto flex flex-col items-center'>
                     <NavbarHero page='home' />
                     <div className='flex flex-col mx-4 sm:mx-8 md:mx-16 lg:mx-32 my-8 sm:my-16 md:my-24 lg:my-32 items-center text-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 w-full h-full px-4 py-8'>
                         <div className='flex flex-col gap-4'>
