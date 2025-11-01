@@ -2,16 +2,11 @@ import {
     Card,
     CardHeader,
     CardBody,
-} from "@heroui/card"
+} from "@heroui/card";
 
 import {
     Divider
-} from "@heroui/divider"
-
-import {
-    Alert
-} from "@heroui/alert"
-
+} from "@heroui/divider";
 
 function SecondSection() {
 
