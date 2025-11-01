@@ -7,4 +7,5 @@ export type ButtonDomainProps = {
     contentButton: string;
     variant?: "ghost" | "solid" | "bordered" | "light" | "flat" | "faded" | "shadow";
     color?: "default" | "primary" | "secondary" | "success" | "warning" | "danger";
+    text?: "white" | "black";
 }

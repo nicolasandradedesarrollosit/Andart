@@ -8,7 +8,7 @@ import {
 
 import {useNavigate} from "react-router-dom";
 
-function ButtonLoading({ domain, contentButton, variant, color }: ButtonDomainProps) {
+function ButtonLoading({ domain, contentButton, variant, color, text }: ButtonDomainProps) {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
@@ -28,7 +28,7 @@ function ButtonLoading({ domain, contentButton, variant, color }: ButtonDomainPr
     };
 
     return (
-        <Button onPress={loadPage(domain)} color={color} variant={variant} isLoading={loading} className='text-white text-sm sm:text-base'>
+        <Button onPress={loadPage(domain)} color={color} variant={variant} isLoading={loading} className={`text-${text} text-sm sm:text-base`}>
             {contentButton}
         </Button>
     )

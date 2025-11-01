@@ -26,8 +26,8 @@ function HeroHome() {
                         </div>
                         <p className='text-base sm:text-lg md:text-xl opacity-80 px-4'>Explora, crea y comparte tus proyectos con nosotros.</p>
                         <div className='flex flex-col sm:flex-row items-center justify-center w-full gap-4 sm:gap-6 md:gap-8'>
-                            <ButtonLoading domain='#FAQ-SECTION' contentButton='Preguntas' variant='flat' color='primary' />
-                            <Button variant='ghost' color='primary' onPress={onOpen}>Contacto</Button>
+                            <ButtonLoading domain='#FAQ-SECTION' contentButton='Preguntas' color='primary' text='white'/>
+                            <Button className='text-white' variant='ghost' color='primary' onPress={onOpen}>Contacto</Button>
                         </div>
                     </div>
                 </div>

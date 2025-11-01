@@ -20,13 +20,9 @@ import {
     NavbarProps
 } from '../../types/home/navbar';
 
-import {
-    useDrawer
-} from '../Home/DrawerProvider';
 import { useState } from 'react';
 
 function NavbarHero({ page }: NavbarProps) {
-    const drawer = page === 'home' ? useDrawer() : null;
     const [mobileOpen, setMobileOpen] = useState(false);
 
     if (page === 'home') {
@@ -39,8 +35,7 @@ function NavbarHero({ page }: NavbarProps) {
                     <NavbarContent justify='end' className='gap-4 sm:gap-6 md:gap-8 lg:gap-12'>
                         <div className='hidden md:flex items-center gap-4'>
                             <Link size='sm' color='primary' href='/' className='cursor-pointer text-sm sm:text-base'>Desarrollo</Link>
-                            <Link size='sm' color='foreground' href='/marketing' className='cursor-pointer text-sm sm:text-base'>Agencia de marketing</Link>
-                            <Button variant='ghost' color='primary' onPress={drawer?.onOpen}>Contacto</Button>
+                            <Link size='sm' color='foreground' href='/marketing' className='cursor-pointer text-sm sm:text-base'>Diseño gráfico y Branding</Link>
                         </div>
 
                         <div className='md:hidden'>
@@ -58,8 +53,7 @@ function NavbarHero({ page }: NavbarProps) {
                         <div className='md:hidden absolute top-full left-0 right-0 bg-black bg-opacity-90 rounded-b-lg p-4 z-50'>
                             <div className='flex flex-col gap-3'>
                                 <Link size='sm' color='primary' href='/' className='cursor-pointer text-sm sm:text-base' onClick={() => setMobileOpen(false)}>Desarrollo</Link>
-                                <Link size='sm' color='foreground' href='/marketing' className='cursor-pointer text-sm sm:text-base' onClick={() => setMobileOpen(false)}>Agencia de marketing</Link>
-                                <Button variant='ghost' color='primary' onPress={() => { setMobileOpen(false); drawer?.onOpen?.(); }}>Contacto</Button>
+                                <Link size='sm' color='foreground' href='/marketing' className='cursor-pointer text-sm sm:text-base' onClick={() => setMobileOpen(false)}>Diseño gráfico y Branding</Link>
                             </div>
                         </div>
                     )}
@@ -77,8 +71,7 @@ function NavbarHero({ page }: NavbarProps) {
                 <NavbarContent justify='end' className='gap-4 sm:gap-6 md:gap-8 lg:gap-12'>
                     <div className='hidden md:flex items-center gap-4'>
                         <Link size='sm' color='foreground' href='/' className='cursor-pointer text-sm sm:text-base'>Desarrollo</Link>
-                        <Link size='sm' color='primary' href='/marketing' className='cursor-pointer text-sm sm:text-base'>Agencia de marketing</Link>
-                        <Button variant='ghost' color='primary' onPress={() => console.log('Drawer de marketing próximamente')}>Contacto</Button>
+                        <Link size='sm' color='primary' href='/marketing' className='cursor-pointer text-sm sm:text-base'>Marketing</Link>
                     </div>
 
                     <div className='md:hidden'>
@@ -96,8 +89,7 @@ function NavbarHero({ page }: NavbarProps) {
                     <div className='md:hidden absolute top-full left-0 right-0 bg-black bg-opacity-90 rounded-b-lg p-4 z-50'>
                         <div className='flex flex-col gap-3'>
                             <Link size='sm' color='foreground' href='/' className='cursor-pointer text-sm sm:text-base' onClick={() => setMobileOpen(false)}>Desarrollo</Link>
-                            <Link size='sm' color='primary' href='/marketing' className='cursor-pointer text-sm sm:text-base' onClick={() => setMobileOpen(false)}>Agencia de marketing</Link>
-                            <Button variant='ghost' color='primary' onPress={() => { setMobileOpen(false); console.log('Drawer de marketing próximamente'); }}>Contacto</Button>
+                            <Link size='sm' color='primary' href='/marketing' className='cursor-pointer text-sm sm:text-base' onClick={() => setMobileOpen(false)}>Diseño gráfico y Branding</Link>
                         </div>
                     </div>
                 )}
