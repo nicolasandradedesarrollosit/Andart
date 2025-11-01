@@ -32,23 +32,23 @@ function SecondSection() {
 ]
 
     return(
-        <div className="flex flex-col justify-center items-center w-full min-h-[40vh] h-auto gap-8 bg-gradient-to-br from-slate-900 via-blue-900/80 to-slate-950 py-12 px-4">
-            <div className="flex flex-col lg:flex-row gap-10 w-full max-w-6xl justify-center items-center lg:items-stretch px-4 text-center">
+        <div className="flex flex-col mb-8 justify-center items-center w-full min-h-[40vh] h-auto gap-8 bg-gradient-to-br from-slate-900 via-blue-900/80 to-slate-950 py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8">
+            <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 w-full max-w-6xl justify-center items-center lg:items-stretch px-4 sm:px-6 text-center">
                 {cards.map((card, index) => (
                     <Card 
                         key={index} 
-                        className={`w-full max-w-xs lg:max-w-sm min-h-[320px] bg-white/5 backdrop-blur-2xl border-white/10 flex flex-col items-center shadow-lg transition-all duration-300 ${index === 1 ? 'lg:max-w-md lg:min-h-[450px] lg:scale-105' : ''}`} 
+                        className={`w-full max-w-sm max-h-[380px] bg-white/5 backdrop-blur-2xl border-white/10 flex flex-col items-center shadow-lg transition-all duration-300 ${index === 1 ? 'lg:max-w-md lg:min-h-[400px] lg:scale-105' : ''}`} 
                         isBlurred
                     >
-                        <CardHeader className="flex flex-col justify-center w-[97%] my-[5px] gap-2 px-3 sm:px-4">
+                        <CardHeader className="flex flex-col justify-center w-[97%] my-[5px] gap-2 px-4 sm:px-5 md:px-6">
                             <div className="flex flex-col gap-1">
                                 <p className="text-white/90 text-base sm:text-lg font-semibold">{card.title}</p>
                                 <p className="text-white/50 text-xs">{card.subtitle}</p>
                             </div>
                         </CardHeader>
                         <Divider />
-                        <CardBody className="px-3 sm:px-4 py-3 flex-grow mx-4">
-                            <p className="text-white/80 text-xs sm:text-sm leading-relaxed indent-[10px]">{card.content}</p>
+                        <CardBody className="px-4 sm:px-5 md:px-6 py-3 sm:py-4 flex-grow mx-4">
+                            <p className="text-white/80 text-xs sm:text-sm leading-relaxed indent-[10px] p-2">{card.content}</p>
                         </CardBody>   
                     </Card>
                 ))}
