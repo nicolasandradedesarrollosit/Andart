@@ -28,7 +28,8 @@ export default {
         },
       },
       backgroundImage: {
-        'hero-pattern': "url('/andart_banner.jpg')",
+        'hero-pattern': "url('/andart-bg-1.jpg')",
+        'hero-pattern-2': "url('/andart-bg-2.jpg')",
       },
     },
   },

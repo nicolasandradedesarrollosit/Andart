@@ -4,13 +4,13 @@ import NavbarHero from '../common/Navbar';
 
 import { 
     useDrawer
-} from './DrawerProvider';
+} from '../common/DrawerProvider';
 
 import {
     Button
 } from '@heroui/button';
 
-import DrawerComponent from './DrawerComponent';
+import DrawerComponent from '../common/DrawerComponent';
 
 function HeroHome() {
     const {onOpen} = useDrawer();
