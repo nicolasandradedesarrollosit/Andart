@@ -136,8 +136,8 @@ function DrawerComponent() {
                         <Avatar 
                             size='lg' 
                             name='Andart' 
-                            src="/Andart.png"
-                            className='w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24'
+                            src="/logo.png"
+                            className='bg-transparent w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24'
                         />
                         <div className='flex flex-col gap-4 text-center'>
                             <p className='text-white text-xl sm:text-2xl md:text-3xl text-center'>

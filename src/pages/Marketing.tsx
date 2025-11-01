@@ -1,4 +1,6 @@
 import Hero from '../components/Marketing/Hero'
+import FirstSection from '@/components/Marketing/FirstSection'
+import SecondSection from '@/components/Marketing/SecondSection'
 import { DrawerProvider } from '../components/common/DrawerProvider'
 
 function Marketing() {
@@ -10,6 +12,8 @@ function Marketing() {
                 throw new Error('Function not implemented.')
             } }>
                 <Hero />
+                <FirstSection />
+                <SecondSection />
             </DrawerProvider>
         </>
     )

@@ -27,15 +27,15 @@ function NavbarHero({ page }: NavbarProps) {
 
     if (page === 'home') {
         return (
-            <Navbar shouldHideOnScroll={true} className="bg-transparent shadow-none mx-2 sm:mx-4 md:mx-6 lg:mx-8 my-4 sm:my-6 md:my-8 w-full sm:w-11/12 md:w-5/6 lg:w-4/5">
+            <Navbar shouldHideOnScroll={true} className="bg-transparent w-full px-4 sm:px-6 md:px-8 lg:px-12">
                 <NavbarBrand>
                     <Avatar className='bg-transparent' size='lg' src="/logo.png"/>
-                    <p className='text-white font-bold ml-2 sm:ml-3 md:ml-4 text-base sm:text-lg italic'>Andart</p>
+                    <p className='text-white font-bold ml-2 sm:ml-3 md:ml-4 lg:ml-6 text-base sm:text-lg md:text-xl'>Andart</p>
                 </NavbarBrand>
-                    <NavbarContent justify='end' className='gap-4 sm:gap-6 md:gap-8 lg:gap-12'>
-                        <div className='hidden md:flex items-center gap-4'>
-                            <Link size='sm' color='primary' href='/' className='cursor-pointer text-sm sm:text-base'>Desarrollo</Link>
-                            <Link size='sm' color='foreground' href='/marketing' className='cursor-pointer text-sm sm:text-base'>Diseño gráfico y branding</Link>
+                    <NavbarContent justify='end' className='gap-6 sm:gap-8 md:gap-10 lg:gap-16'>
+                        <div className='hidden md:flex items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12'>
+                            <Link size='sm' color='primary' href='/' className='cursor-pointer text-xs sm:text-sm md:text-base lg:text-base'>Desarrollo</Link>
+                            <Link size='sm' color='foreground' href='/marketing' className='cursor-pointer text-xs sm:text-sm md:text-base lg:text-base'>Diseño gráfico y branding</Link>
                         </div>
 
                         <div className='md:hidden'>
@@ -50,8 +50,8 @@ function NavbarHero({ page }: NavbarProps) {
                     </NavbarContent>
 
                     {mobileOpen && (
-                        <div className='md:hidden absolute top-full left-0 right-0 bg-black bg-opacity-90 rounded-b-lg p-4 z-50'>
-                            <div className='flex flex-col gap-3'>
+                        <div className='md:hidden absolute top-full left-0 right-0 bg-black bg-opacity-95 rounded-b-lg p-4 sm:p-6 z-50'>
+                            <div className='flex flex-col gap-4 sm:gap-5'>
                                 <Link size='sm' color='primary' href='/' className='cursor-pointer text-sm sm:text-base' onClick={() => setMobileOpen(false)}>Desarrollo</Link>
                                 <Link size='sm' color='foreground' href='/marketing' className='cursor-pointer text-sm sm:text-base' onClick={() => setMobileOpen(false)}>Diseño gráfico y branding</Link>
                             </div>
@@ -63,15 +63,15 @@ function NavbarHero({ page }: NavbarProps) {
 
     if (page === 'marketing') {
         return (
-            <Navbar shouldHideOnScroll={true} className="relative bg-transparent shadow-none mx-2 sm:mx-4 md:mx-6 lg:mx-8 my-4 sm:my-6 md:my-8 w-full sm:w-11/12 md:w-5/6 lg:w-4/5">
+            <Navbar shouldHideOnScroll={true} className="bg-transparent w-full px-4 sm:px-6 md:px-8 lg:px-12">
                 <NavbarBrand>
                     <Avatar className='bg-transparent' size='lg' src="/logo.png"/>
-                    <p className='text-white font-bold ml-2 sm:ml-3 md:ml-4 text-base sm:text-lg italic'>Andart</p>
+                    <p className='text-white font-bold ml-2 sm:ml-3 md:ml-4 lg:ml-6 text-base sm:text-lg md:text-xl'>Andart</p>
                 </NavbarBrand>
-                <NavbarContent justify='end' className='gap-4 sm:gap-6 md:gap-8 lg:gap-12'>
-                    <div className='hidden md:flex items-center gap-4'>
-                        <Link size='sm' color='foreground' href='/' className='cursor-pointer text-sm sm:text-base'>Desarrollo</Link>
-                        <Link size='sm' color='primary' href='/marketing' className='cursor-pointer text-sm sm:text-base'>Diseño gráfico y branding</Link>
+                <NavbarContent justify='end' className='gap-6 sm:gap-8 md:gap-10 lg:gap-16'>
+                    <div className='hidden md:flex items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12'>
+                        <Link size='sm' color='foreground' href='/' className='cursor-pointer text-xs sm:text-sm md:text-base lg:text-base'>Desarrollo</Link>
+                        <Link size='sm' color='primary' href='/marketing' className='cursor-pointer text-xs sm:text-sm md:text-base lg:text-base'>Diseño gráfico y branding</Link>
                     </div>
 
                     <div className='md:hidden'>
@@ -86,8 +86,8 @@ function NavbarHero({ page }: NavbarProps) {
                 </NavbarContent>
 
                 {mobileOpen && (
-                    <div className='md:hidden absolute top-full left-0 right-0 bg-black bg-opacity-90 rounded-b-lg p-4 z-50'>
-                        <div className='flex flex-col gap-3'>
+                    <div className='md:hidden absolute top-full left-0 right-0 bg-black bg-opacity-95 rounded-b-lg p-4 sm:p-6 z-50'>
+                        <div className='flex flex-col gap-4 sm:gap-5'>
                             <Link size='sm' color='foreground' href='/' className='cursor-pointer text-sm sm:text-base' onClick={() => setMobileOpen(false)}>Desarrollo</Link>
                             <Link size='sm' color='primary' href='/marketing' className='cursor-pointer text-sm sm:text-base' onClick={() => setMobileOpen(false)}>Diseño gráfico y branding</Link>
                         </div>
