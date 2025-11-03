@@ -1,6 +1,8 @@
 import Hero from '../components/Marketing/Hero'
 import FirstSection from '@/components/Marketing/FirstSection'
 import SecondSection from '@/components/Marketing/SecondSection'
+import ThirdSection from '@/components/Marketing/ThirdSection'
+import Footer from '@/components/common/Footer'
 import { DrawerProvider } from '../components/common/DrawerProvider'
 
 function Marketing() {
@@ -14,6 +16,8 @@ function Marketing() {
                 <Hero />
                 <FirstSection />
                 <SecondSection />
+                <ThirdSection />
+                <Footer />
             </DrawerProvider>
         </>
     )

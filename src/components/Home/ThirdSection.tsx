@@ -21,9 +21,15 @@ import {
     useDrawer
 } from '../common/DrawerProvider'
 
+import { motion } from 'motion/react';
+import { useInView } from 'motion/react';
+import { useRef } from 'react';
+
 function ThirdSection() {
 
     const {onOpen} = useDrawer();
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: false, amount: 0.2 });
 
     const cards = [
         {
@@ -74,54 +80,76 @@ function ThirdSection() {
     )
 
     return(
-        <div className="flex flex-col justify-center items-center w-full min-h-[40vh] h-auto gap-8 bg-gradient-to-br from-slate-900 via-blue-900/80 to-slate-950 py-12 px-4">
-            <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white px-4 text-center">Nuestros precios</p>
+        <motion.div 
+            ref={ref}
+            className="flex flex-col justify-center items-center w-full min-h-[40vh] h-auto gap-8 bg-gradient-to-br from-slate-900 via-blue-900/80 to-slate-950 py-12 px-4"
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+            <motion.p 
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white px-4 text-center"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ delay: 0.1, duration: 0.6 }}
+            >Nuestros precios</motion.p>
             
-            <div className="flex flex-col lg:flex-row gap-8 w-full max-w-7xl justify-center items-center lg:items-stretch px-4">
+            <motion.div 
+                className="flex flex-col lg:flex-row gap-8 w-full max-w-7xl justify-center items-center lg:items-stretch px-4"
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+            >
                 {cards.map((card, index) => (
-                    <Card 
-                        key={index} 
-                        className="w-full max-w-[400px] lg:w-[400px] min-h-[600px] bg-white/5 backdrop-blur-2xl border-white/10 flex flex-col items-center shadow-lg" 
-                        isBlurred
+                    <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                        transition={{ delay: 0.2 + index * 0.1, duration: 0.6 }}
                     >
-                        <CardHeader className="flex flex-col justify-center w-[97%] my-[5px] min-h-[200px] gap-4 sm:gap-8 px-4 sm:px-0">
-                            <div className="ml-2 flex flex-col gap-2">
-                                <p className="text-white/90 text-xl sm:text-2xl font-semibold">{card.title}</p>
-                                <p className="text-white/50 text-xs sm:text-sm indent-[10px]">{card.description}</p>
-                            </div>
-                            <div className="flex flex-row ml-4 sm:ml-8 justify-start w-full items-end">
-                                <p className="font-bold text-4xl sm:text-5xl text-white/90">{card.price}</p>
-                                <p className="text-white/40 text-xs">/usd</p>
-                            </div>
-                        </CardHeader>
-                        <Divider />
-                        <CardBody className="px-4 sm:px-6">
-                            {card.features.map((feature, idx) => (
-                                <div key={idx} className="flex flex-row items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
-                                    <div className="mt-1">
-                                        {svg}
-                                    </div>
-                                    <p className="text-white/90 text-xs sm:text-sm leading-relaxed">{feature}</p>
+                        <Card 
+                            className="w-full max-w-[400px] lg:w-[400px] min-h-[600px] bg-white/5 backdrop-blur-2xl border-white/10 flex flex-col items-center shadow-lg" 
+                            isBlurred
+                        >
+                            <CardHeader className="flex flex-col justify-center w-[97%] my-[5px] min-h-[200px] gap-4 sm:gap-8 px-4 sm:px-0">
+                                <div className="ml-2 flex flex-col gap-2">
+                                    <p className="text-white/90 text-xl sm:text-2xl font-semibold">{card.title}</p>
+                                    <p className="text-white/50 text-xs sm:text-sm indent-[10px]">{card.description}</p>
                                 </div>
-                            ))}
-                        </CardBody>
-                        <CardFooter className="flex justify-center px-4 sm:px-6">
-                            <Button className="w-full sm:w-9/10 text-white" variant={index === 1 ? "ghost" : "solid"} color="primary" onPress={onOpen}>
-                                Contactarse
-                            </Button>
-                        </CardFooter>    
-                    </Card>
+                                <div className="flex flex-row ml-4 sm:ml-8 justify-start w-full items-end">
+                                    <p className="font-bold text-4xl sm:text-5xl text-white/90">{card.price}</p>
+                                    <p className="text-white/40 text-xs">/usd</p>
+                                </div>
+                            </CardHeader>
+                            <Divider />
+                            <CardBody className="px-4 sm:px-6">
+                                {card.features.map((feature, idx) => (
+                                    <div key={idx} className="flex flex-row items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+                                        <div className="mt-1">
+                                            {svg}
+                                        </div>
+                                        <p className="text-white/90 text-xs sm:text-sm leading-relaxed">{feature}</p>
+                                    </div>
+                                ))}
+                            </CardBody>
+                            <CardFooter className="flex justify-center px-4 sm:px-6">
+                                <Button className="w-full sm:w-9/10 text-white" variant={index === 1 ? "ghost" : "solid"} color="primary" onPress={onOpen}>
+                                    Contactarse
+                                </Button>
+                            </CardFooter>    
+                        </Card>
+                    </motion.div>
                 ))}
-            </div>
+            </motion.div>
             
             <Alert
-                className="bg-black text-white w-full max-w-[90%] sm:max-w-[80%] lg:max-w-[60%]"
+                className="bg-black text-white w-full max-w-[80%] sm:max-w-[70%] lg:max-w-[40%]"
                 color="primary"
                 variant="solid"
                 title={<span className="text-sm sm:text-base md:text-lg font-semibold">Información importante</span>}
                 description={<span className="text-xs sm:text-sm md:text-base">Para sitios web personalizados, rellene el formulario de contacto y nos contactaremos en breve para realizar la tasación.</span>}
             />
-        </div>
+        </motion.div>
     )
 }
 

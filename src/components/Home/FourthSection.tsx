@@ -3,7 +3,14 @@ import {
     AccordionItem
 } from '@heroui/accordion';
 
+import { motion } from 'motion/react';
+import { useInView } from 'motion/react';
+import { useRef } from 'react';
+
 function FourthSection() {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: false, amount: 0.2 });
+
     const faq = [
         {
             question: "¿Qué servicios ofrecen en Andart?",
@@ -35,12 +42,29 @@ function FourthSection() {
         }
     ]
     return (
-        <div id="FAQ-SECTION" className='flex flex-col items-center bg-white w-full min-h-[60vh] h-auto justify-center gap-12 text-black py-8 sm:py-12 md:py-16'>
-            <div className='flex flex-col justify-center text-center gap-2 px-4'>
+        <motion.div 
+            ref={ref}
+            id="FAQ-SECTION" 
+            className='flex flex-col items-center bg-white w-full min-h-[60vh] h-auto justify-center gap-12 text-black py-8 sm:py-12 md:py-16'
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+            <motion.div 
+                className='flex flex-col justify-center text-center gap-2 px-4'
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ delay: 0.1, duration: 0.6 }}
+            >
                 <p className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-primary'>Preguntas frecuentes,</p>
                 <p className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-black'>todo lo que necesitas saber</p>
-            </div>
-            <div className='flex flex-col gap-4 w-95/100 sm:w-5/6 md:w-4/5 lg:w-3/4 xl:w-2/3 shadow-lg rounded-xl bg-gray-50'>
+            </motion.div>
+            <motion.div 
+                className='flex flex-col gap-4 w-95/100 sm:w-5/6 md:w-4/5 lg:w-3/4 xl:w-2/3 shadow-lg rounded-xl bg-gray-50'
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+            >
                 <Accordion variant='bordered'>
                     {faq.map((item, index) => (
                         <AccordionItem key={index} aria-label={item.question} title={item.question}>
@@ -48,8 +72,8 @@ function FourthSection() {
                         </AccordionItem>
                     ))}
                 </Accordion>
-            </div>
-        </div>
+            </motion.div>
+        </motion.div>
     )
 }
 
